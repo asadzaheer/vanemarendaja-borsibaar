@@ -98,7 +98,8 @@ export default function PriceHistoryGraphFancy({
       const historyJson: HistoryDto[] = await res.json();
       setCurrent({ productInv, priceHistory: historyJson });
     } catch (e) {
-      setError(e?.message || "Failed to fetch history");
+      const error = e instanceof Error ? e : new Error(String(e));
+      setError(error.message || "Failed to fetch history");
     }
   }, []);
 
