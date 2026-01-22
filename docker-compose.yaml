@@ -1,6 +1,9 @@
-version: "3.3"
 services:
   postgres:
+    # Note: Pinned to PostgreSQL 16 to maintain compatibility with existing database volume.
+    # The postgres_data volume was initialized with PostgreSQL 16. Upgrading to 17+ requires
+    # either: (1) deleting the volume (loses data), or (2) running a pg_dump/pg_restore migration.
+    # To upgrade: delete postgres_data volume and rebuild with PostgreSQL 17+
     image: postgres:16
     container_name: borsibaar-db
     environment:

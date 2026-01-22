@@ -13,37 +13,11 @@ import {
   ListPlus,
   Trash,
 } from "lucide-react";
-
-interface InventoryTransactionResponseDto {
-  id: number;
-  inventoryId: number;
-  transactionType: string;
-  quantityChange: number;
-  quantityBefore: number;
-  quantityAfter: number;
-  referenceId?: string;
-  notes?: string;
-  createdBy: string;
-  createdByName?: string;
-  createdByEmail?: string;
-  createdAt: string;
-}
-
-interface InventoryItem {
-  id: number;
-  productId: number;
-  productName: string;
-  categoryId: number;
-  categoryName: string;
-  quantity: number;
-  currentPrice: number;
-  basePrice: number;
-  minPrice: number;
-  maxPrice: number;
-  adjustedPrice?: number;
-  organizationId: number;
-  updatedAt: string;
-}
+import {
+  InventoryItem,
+  Category,
+  InventoryTransactionResponseDto,
+} from "@/types/inventory";
 import {
   Select,
   SelectContent,
@@ -85,7 +59,7 @@ export default function Inventory() {
   });
   const [showCreateProductModal, setShowCreateProductModal] = useState(false);
   const [showDeleteProductModal, setShowDeleteProductModal] = useState(false);
-  const [categories, setCategories] = useState<Array<{ id: number; name: string; dynamicPricing: boolean }>>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const [categoryForm, setCategoryForm] = useState({
     name: "",
