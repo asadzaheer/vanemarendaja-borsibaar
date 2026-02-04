@@ -29,11 +29,12 @@ import java.util.stream.Collectors;
 public class InventoryService {
 
     private final InventoryRepository inventoryRepository;
-    private final InventoryTransactionRepository inventoryTransactionRepository;
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
     private final BarStationRepository barStationRepository;
+    private final InventoryTransactionService transactionService;
     private final InventoryMapper inventoryMapper;
+    private final InventoryTransactionRepository inventoryTransactionRepository;
 
     @Transactional(readOnly = true)
     public List<InventoryResponseDto> getByOrganization(Long organizationId) {
@@ -147,21 +148,10 @@ public class InventoryService {
                 .orElse(product.getBasePrice());
 
         // Create transaction record
-        createTransaction(inventory, "PURCHASE", request.quantity(),
+        transactionService.createTransaction(inventory, "PURCHASE", request.quantity(),
                 oldQuantity, newQuantity, currentPrice, currentPrice, null, request.notes(), userId);
 
-        InventoryResponseDto base = inventoryMapper.toResponse(inventory);
-        return new InventoryResponseDto(
-                base.id(),
-                base.organizationId(),
-                base.productId(),
-                product.getName(),
-                base.quantity(),
-                currentPrice,
-                product.getDescription(), null,
-                product.getMinPrice(),
-                product.getMaxPrice(),
-                base.updatedAt());
+        return transactionService.createInventoryResponse(inventory, product, currentPrice);
     }
 
     @Transactional
@@ -191,22 +181,11 @@ public class InventoryService {
                 .orElse(product.getBasePrice());
 
         // Create transaction record (negative quantity change)
-        createTransaction(inventory, "ADJUSTMENT", request.quantity().negate(),
+        transactionService.createTransaction(inventory, "ADJUSTMENT", request.quantity().negate(),
                 oldQuantity, newQuantity, currentPrice, currentPrice, request.referenceId(),
                 request.notes(), userId);
 
-        InventoryResponseDto base = inventoryMapper.toResponse(inventory);
-        return new InventoryResponseDto(
-                base.id(),
-                base.organizationId(),
-                base.productId(),
-                product.getName(),
-                base.quantity(),
-                currentPrice,
-                product.getDescription(), null,
-                product.getMinPrice(),
-                product.getMaxPrice(),
-                base.updatedAt());
+        return transactionService.createInventoryResponse(inventory, product, currentPrice);
     }
 
     @Transactional
@@ -229,22 +208,11 @@ public class InventoryService {
                 .orElse(product.getBasePrice());
 
         // Create transaction record
-        createTransaction(inventory, "ADJUSTMENT", quantityChange,
+        transactionService.createTransaction(inventory, "ADJUSTMENT", quantityChange,
                 oldQuantity, request.newQuantity(), currentPrice, currentPrice, null, request.notes(),
                 userId);
 
-        InventoryResponseDto base = inventoryMapper.toResponse(inventory);
-        return new InventoryResponseDto(
-                base.id(),
-                base.organizationId(),
-                base.productId(),
-                product.getName(),
-                base.quantity(),
-                currentPrice,
-                product.getDescription(), null,
-                product.getMinPrice(),
-                product.getMaxPrice(),
-                base.updatedAt());
+        return transactionService.createInventoryResponse(inventory, product, currentPrice);
     }
 
     @Transactional(readOnly = true)
