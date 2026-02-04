@@ -6,6 +6,7 @@
 3. [PR #3](https://github.com/asadzaheer/vanemarendaja-borsibaar/pull/3) - by Asad
 4. [PR #4](https://github.com/asadzaheer/vanemarendaja-borsibaar/pull/4) - by Asad
 5. [PR #5](https://github.com/asadzaheer/vanemarendaja-borsibaar/pull/5) - by Khushboo
+5. [PR #6](https://github.com/asadzaheer/vanemarendaja-borsibaar/pull/6) - by Asad
 
 ## Merge Conflict Resolution
 We encountered a merge conflict in our demo branch which was resolved by:
