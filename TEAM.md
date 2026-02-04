@@ -3,7 +3,7 @@ Deadline: 26.01.2026
 
 ## Team Members
 - Asad Zaheer (@asadzaheer) — Team Lead / Integrator
-- Khushboo Kumari (@khushboo-sah) — Contributor
+- Khushboo Kumari (@khushboo-sah) — Contributor / DevOps Engineer
 - Eva (@evamariat) — Contributor
 - Karam Jabbarov (@jabbarovkaram-jjv) — Contributor
 
