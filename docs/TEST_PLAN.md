@@ -33,9 +33,11 @@
 - **Scope**: End-to-end application flow
 - **Tools**: Cypress, Selenium, Manual
 - **Focus**:
-  - Complete user journeys
+  - Complete user journeys (login, logout, core transactions)
   - Cross-module workflows
   - System-wide error handling
+  - Invalid input handling and negative test cases
+  - Post-deployment smoke tests for critical features
 
 ### 2.4 Performance Testing
 - **Scope**: System behavior under load
@@ -194,11 +196,17 @@
 
 ### 10.3 Soak Testing
 - **Objective**: Verify system stability over time
-- **Duration**: 4-8 hours
+- **Duration**: 4–8 hours
 - **Focus**:
   - Memory usage trends
   - Connection leaks
   - Resource utilization patterns
+
+### 10.4 Test Results Handling
+- System test reports stored in CI/CD artifacts (screenshots, videos, and logs).
+- Failed tests trigger alerts to the team.
+- Team reviews failures regularly and prioritizes based on user impact.
+- Test reports archived automatically (daily or monthly depending on log volume).
 
 ## 11. Security Testing
 
