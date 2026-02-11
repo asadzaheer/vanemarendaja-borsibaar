@@ -15,3 +15,16 @@ Deadline: 26.01.2026
 - Each Pull Request must have at least one peer review (comments + approval).
 - We will demonstrate at least two merge strategies (e.g., merge commit and squash/rebase).
 - We will intentionally create and resolve one merge conflict locally using the command line.
+
+## Merge Strategies
+We have chosen the following merge strategies for our workflow:
+
+- **Regular Merge**
+  - We chose this strategy to keep the merging process simple and to maintain the complete commit history of the feature branch in the main branch.
+
+- **Squash Merge**
+  - We use this strategy when we want to keep the main branch history clean and easy to understand by condensing all feature branch commits into a single commit.
+
+### Important Notes
+- We have not encountered any major issues with these strategies.
+- Be cautious not to reuse a feature branch after performing a squash merge, as this could lead to complications with the main branch's commit history.
