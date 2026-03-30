@@ -70,6 +70,8 @@ public class SecurityConfig {
                         // Allow OAuth2 endpoints and public routes
                         .requestMatchers("/", "/error", "/oauth2/**", "/login/oauth2/code/**", "/auth/login/success")
                         .permitAll()
+                        // ADDED: allow Student endpoints without authentication
+                        .requestMatchers("/api/students/**").permitAll()
                         // Public API endpoints
                         .requestMatchers(HttpMethod.GET, "/api/organizations/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/organizations").permitAll()

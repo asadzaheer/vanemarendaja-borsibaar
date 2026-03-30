@@ -1,5 +1,12 @@
 databaseChangeLog:
   - changeSet:
+        id: 000-h2-citext-fix
+        author: fix
+        dbms: h2
+        changes:
+          - sql:
+              sql: CREATE DOMAIN IF NOT EXISTS CITEXT AS VARCHAR(255);
+  - changeSet:
       id: 000-enable-citext
       author: kris
       changes:
@@ -24,7 +31,7 @@ databaseChangeLog:
                     primaryKeyName: pk_organizations
               - column:
                   name: name
-                  type: CITEXT
+                  type: VARCHAR(255)
                   constraints:
                     nullable: false
               - column:
@@ -989,3 +996,4 @@ databaseChangeLog:
         - dropColumn:
             columnName: price_decrease_step
             tableName: organizations
+
